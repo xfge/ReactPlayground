@@ -1,5 +1,6 @@
 import React from "react";
 import {VisibilityFilters} from "../actions";
+import {connect} from "react-redux";
 
 const FilterText = {
     [VisibilityFilters.SHOW_ALL]: 'All',
@@ -7,12 +8,20 @@ const FilterText = {
     [VisibilityFilters.SHOW_COMPLETED]: 'Completed'
 }
 
-const FilterButton = ({filter, onClick}) => {
+const FilterButton = ({filter, disabled, onClick}) => {
     return (
-        <button onClick={onClick}>
+        <button onClick={onClick} disabled={disabled}>
             {FilterText[filter]}
         </button>
     );
 }
 
-export default FilterButton;
+const mapState = (state, ownProps) => {
+    return {
+        disabled: state.visibilityFilter === ownProps.filter
+    }
+}
+
+export default connect(
+    mapState
+)(FilterButton);

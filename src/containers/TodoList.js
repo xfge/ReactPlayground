@@ -7,9 +7,10 @@ const TodoList = ({todos, toggleTodo}) => {
     return (
         <ul>
             {todos.map(todo => (
-                <li style={{
-                    textDecoration: todo.completed ? 'line-through' : 'none'
-                }} onClick={() => toggleTodo(todo.id)}
+                <li key={`todo-item-${todo.id}`} onClick={() => toggleTodo(todo.id)}
+                    style={{
+                        textDecoration: todo.completed ? 'line-through' : 'none'
+                    }}
                 >
                     {todo.content}
                 </li>
@@ -19,9 +20,8 @@ const TodoList = ({todos, toggleTodo}) => {
 }
 
 const mapState = (state) => {
-    const displayTodos = getDisplayTodos();
     return {
-        todos: displayTodos
+        todos: getDisplayTodos()
     }
 };
 
