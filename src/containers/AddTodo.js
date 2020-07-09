@@ -6,7 +6,7 @@ class AddTodo extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = { input: "" };
+        this.state = {input: ""};
     }
 
     onInputChanged = (input) => {

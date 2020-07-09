@@ -1,8 +1,9 @@
 import React from "react";
 import {connect} from "react-redux";
 import {toggleTodo} from "../actions";
+import {getDisplayTodos} from "../redux/api";
 
-function TodoList({todos, toggleTodo}) {
+const TodoList = ({todos, toggleTodo}) => {
     return (
         <ul>
             {todos.map(todo => (
@@ -17,9 +18,12 @@ function TodoList({todos, toggleTodo}) {
     )
 }
 
-const mapState = (state) => ({
-    todos: state.todos
-});
+const mapState = (state) => {
+    const displayTodos = getDisplayTodos();
+    return {
+        todos: displayTodos
+    }
+};
 
 export default connect(
     mapState,
